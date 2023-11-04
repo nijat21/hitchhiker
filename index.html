@@ -12,15 +12,14 @@
     <main id="main">
         <!-- #game-intro is initially shown on the game start screen -->
         <div id="game-intro">
-            <h1 id="title">Hitchhiker in the Galaxy!</h1>
             <img src="./images/logo.png" alt="" class="logo-img" />
             <br />
-            <button id="start-button">Start Game</button>
-            <p id="start-text">Get ready to discover the secrets of the Galaxy!</p>
+            <button id="start-button">Play</button>
+            <!-- <p id="start-text">Get ready to discover the secrets of the Galaxy!</p> -->
         </div>
   
         <div>
-          <div id="game-container">
+          <div id="game-score">
             <h2>Stats</h2>
             <p>Score: <span id="score">0</span></p>
             <p>Lives: <span id="lives">3</span></p>
@@ -39,6 +38,7 @@
       </main>
 
     <!-- LINK THE JAVASCRIPT FILES HERE (keep in mind that the order in which you link them MATTERS) -->
+    <script type="text/javascript" src="js/maze.js"></script>
     <script type="text/javascript" src="js/player.js"></script>
     <script type="text/javascript" src="js/game.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>

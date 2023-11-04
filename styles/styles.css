@@ -13,48 +13,73 @@ body button {
     font-size: 30px;
     background-color: #09041bc9;
     color: aliceblue;
-    padding: 20px 40px;
     border: 0;
     box-shadow: 0;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    width: 15vw;
+    height: 8vh;
     border-radius: 15px;
     font-weight: bold;
+    position: relative;
   }
 
   #main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  #game-screen {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    border: 1px solid white;
+  }
+
+  .cell {
+    border: 1px solid white;
+    background-color: transparent;
+  }
+
+  #title {
+    height: 6vh;    
+    
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+.logo-img {
+    width: 300px;
+  }
+  
+  #game-intro {
+    padding: 20px 0px;
+    height: 60vh;    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
-#title {
-    height: 100px;    
-
-    font-weight: bold;
-    font-size: 3rem;
+  
+#game-score {
+    width: 40vw;
+    height: 6vh;
+    background: linear-gradient(135deg, rgb(62, 28, 86), rgb(48, 68, 110));
+    border-radius: 40px;
     text-align: center;
-  }
-
-.logo-img {
-    width: 500px;
-    /* color: rgb(81, 0, 243); */
-  }
-  
-#game-intro {
-    padding: 20px 0px;    
-  }
-  
-#game-container {
-    width: 100vw;
-    padding: 20px 0px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
+
+    display:none;
   }
   
 #game-screen {
@@ -63,37 +88,17 @@ body button {
     padding: 20px 0px;
     overflow: hidden;
     position: relative;
-    background-image: url(../images/road.png);
+    /* background-image: url(../images/road.png); */
     background-size: cover;
     animation: slide 5s linear infinite;
   }
-  
-  @keyframes slide {
-    0% {
-      background-position: 0 -1000px;
-    }
-    95% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: 0 50px;
-    }
-  }
-  
+
   #game-end {
     display: none;
   }
   
-  .game-intro p {
-    font-size: 18px;
-    font-family: "Verdana";
-  }
-  
 
-  
-  .arrows-img {
-    width: 150px;
-  }
+ 
   
 
   
