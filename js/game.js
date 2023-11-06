@@ -5,16 +5,16 @@ class Game {
         this.gameScreen = document.getElementById('game-screen');
         this.gameEndScreen = document.getElementById('game-end');
 
-        this.player = new Player(this.gameScreen, 100, 100, '../images/astronaut_on_rocket.png');
+        this.player = new Player(this.gameScreen, 40, 40, '../images/astronaut_on_rocket.png');
         this.height = 600;
-        this.width = 600;
+        this.width = 800;
         // this.obstacles = [];
         this.score = 0;
         this.lives = 3;
         this.isGameOver = false;
         this.grid = [...grid];
-        this.column = 10;
-        this.row = 10;
+        this.column = 16;
+        this.row = 16;
     }
 
     start() {
@@ -26,7 +26,7 @@ class Game {
         this.startScreen.style.display = 'none';
 
         // showing
-        this.gameScreen.style.display = 'block';
+        this.gameScreen.style.display = 'grid';
         this.buildMaze()
     }
 
@@ -46,16 +46,11 @@ class Game {
                 const cell = document.createElement('div');
                 cell.classList.add('cell');
 
-                // Calculating cell dimensions
-                const cellWidth = this.width / this.column;
-                const cellHeight = this.height / this.row;
-
                 // Setting calculated cell dimensions
-                cell.style.setProperty('--cell-height', cellHeight + 'px');
-                cell.style.setProperty('--cell-width', cellWidth + 'px');
                 this.gameScreen.appendChild(cell);
             }
         }
+        console.log(this.player);
     }
 }
 

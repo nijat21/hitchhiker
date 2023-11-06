@@ -5,7 +5,6 @@ window.onload = function () {
 
     startButton.addEventListener('click', () => {
         startGame();
-        createMaze();
     });
 
     let game = new Game();

@@ -36,7 +36,7 @@ body button {
     display: grid;
     grid-template-rows: repeat(var(--rows, 10), 1fr);
     grid-template-columns: repeat(var(--columns, 10), 1fr);
-    border: 1px solid white;
+    border: 1px solid rgba(255, 255, 255, 0.712);
     width: var(--grid-width);
     height: var(--grid-height);
 
@@ -60,9 +60,11 @@ body button {
 } */
 
 .cell {
-    border: 1px solid black;
-    width: var(--cell-width);
-    height: var(--cell-height);
+    border: 1px solid rgba(255, 255, 255, 0.712);
+    /* width: var(--cell-width);
+    height: var(--cell-height); */
+    width: auto;
+    height: auto;
 }
 
   #title {
