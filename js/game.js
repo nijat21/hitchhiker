@@ -5,7 +5,7 @@ class Game {
         this.gameScreen = document.getElementById('game-screen');
         this.gameEndScreen = document.getElementById('game-end');
 
-        // this.player = new Player(this.gameScreen, 100, 100, '../images/astronaut_on_rocket.png');
+        this.player = new Player(this.gameScreen, 100, 100, '../images/astronaut_on_rocket.png');
         this.height = 600;
         this.width = 600;
         // this.obstacles = [];
@@ -41,6 +41,7 @@ class Game {
 
 
         for (let i = 0; i < this.row; i++) {
+
             for (let j = 0; j < this.column; j++) {
                 const cell = document.createElement('div');
                 cell.classList.add('cell');

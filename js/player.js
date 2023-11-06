@@ -18,4 +18,6 @@ class Player {
         this.element.style.height = `${this.height}px`;
         this.gameScreen.appendChild(this.element);
     }
+
+
 }
