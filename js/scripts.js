@@ -11,4 +11,35 @@ window.onload = function () {
     function startGame() {
         game.start();
     }
+
+    // Adding movement
+    window.addEventListener('keydown', event => {
+        event.preventDefault();
+
+        switch (event.key) {
+            case 'ArrowUp':
+                game.moveUp();
+                break;
+            case 'ArrowDown':
+                game.moveDown();
+                break;
+            case 'ArrowLeft':
+                game.moveLeft();
+                break;
+            case 'ArrowRight':
+                game.moveRight();
+                break;
+        }
+    });
+
+    // difference between normal even and keydown event
+    // how does this code given that we automatically put keydown even for the arrows
+    // 
+    Game.prototype.keyboardListener = function () {
+        document.addEventListener('keydown', event => {
+            this.movePlayer(event);
+            this.checkGoal();
+        });
+
+    }
 }

@@ -17,9 +17,9 @@ class Game {
         this.levels = [...levels];
         // console.log(this.levels);
 
-        // establish the basic properties common to all this objects.
+        // the basic properties common to all this objects.
         this.tileTypes = ['floor', 'wall'];
-        this.numLines = 16;
+        this.numLines = 16; // if we need the number of columns
         this.tileDim = 32;
         // inherit the level's properties: map, player start, goal start.
         this.map = level.map;
@@ -28,7 +28,7 @@ class Game {
         // make a copy of the level's player.
         this.player = { ...level.player };
         // create a property for the DOM element, to be set later.
-        this.player.el = null;
+        this.player.element = null;
         // make a copy of the goal.
         this.goal = { ...level.goal };
     }
@@ -92,8 +92,18 @@ class Game {
     // placing a player or a goal sprite
     // Type has ben used in createEL and become a class name. Cna be either 'player' or 'goal'
     placeSprite(type) {
+
+        // if (type === 'player') {
+        //     x = this.player.x;
+        //     y = this.player.y;
+        // } else if (type === 'goal') {
+        //     x = this.goal.x;
+        //     y = this.goal.y;
+        // }
+
+        // Improved versions of previous code lines
         let x = this[type].x;
-        let y = this[type].x;
+        let y = this[type].y;
 
         // Creating sprites
         let sprite = this.createEL(x, y, type);
@@ -115,13 +125,109 @@ class Game {
 
     // Collide animation for player
     collide() {
-        this.player.className += 'collide';
+        this.player.element.className += 'collide';
         let obj = this;
 
+        // every time the player collides, lives decrease by one
+        // this.lives--;
+
+        // 0.2 seconds later reset the player
         window.setTimeout(() => {
-            this.player.col.className = 'player';
+            obj.player.element.className = 'player';
         }, 200);
         return 0;
+    }
+
+    // Left movement
+    moveLeft() {
+        if (this.player.x == 0) {
+            this.collide()
+            return;
+        }
+
+        // check next tile
+        let nextTile = this.map[this.player.y][this.player.x - 1];
+        if (nextTile == 1) {
+            this.collide();
+            return;
+        }
+        this.player.x -= 1;
+
+        // Updating the location of DOM element
+        this.updateHoriz();
+    }
+
+    // Move up
+    moveUp() {
+        if (this.player.y == 0) {
+            this.collide();
+            return;
+        }
+
+        // check next tile
+        let nextTile = this.map[this.player.y - 1][this.player.x];
+        if (nextTile == 1) {
+            this.collide();
+            return;
+        }
+        this.player.y -= 1;
+
+        // Updating the location of DOM element
+        this.updateVert();
+    }
+
+    // Right movement
+    moveRight() {
+        if (this.player.x == this.map[this.player.y].length - 1) {
+            this.collide();
+            return;
+        }
+
+        // check next tile
+        let nextTile = this.map[this.player.y][this.player.x + 1];
+        if (nextTile == 1) {
+            this.collide();
+            return;
+        }
+        this.player.x += 1;
+        this.updateHoriz();
+    }
+
+    // Down movement
+    moveDown() {
+        if (this.player.y == this.map.length - 1) {
+            this.collide();
+            return;
+        }
+
+        // check next tile
+        let nextTile = this.map[this.player.y + 1][this.player.x];
+        if (nextTile == 1) {
+            this.collide();
+            return;
+        }
+        this.player.y += 1;
+        this.updateVert();
+    }
+
+    // Updating vertical position
+    updateVert() {
+        this.player.element.style.top = this.player.y * this.tileDim + 'px';
+    }
+
+    // Updating horizontal position
+    updateHoriz() {
+        this.player.element.style.left = this.player.x * this.tileDim + 'px';
+    }
+
+    // Checking if the goals is reached
+    checkGoal() {
+        let body = document.querySelector('body');
+
+        if (this.player.x == this.goal.x && this.player.y == this.goal.y) {
+            body.className = 'success';
+        }
+        body.className = '';
     }
 
 
