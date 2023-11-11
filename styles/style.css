@@ -1,0 +1,201 @@
+body {
+    background-image: url(../images/galaxy.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    color:aliceblue;
+    text-align: center;
+    padding: 0;
+    font-size: 2rem;
+}
+
+body button {
+    font-size: 30px;
+    background-color: #09041bc9;
+    color: aliceblue;
+    border: 0;
+    box-shadow: 0;
+    width: 15vw;
+    height: 8vh;
+    border-radius: 15px;
+    font-weight: bold;
+    position: relative;
+  }
+
+  #main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  #game-screen {
+    border: 1px solid rgba(255, 255, 255, 0.712);
+    display: none;
+    display: flex;
+    /* overflow: hidden; */
+    background-size: cover;
+    background-color: #09041bc9;
+  }
+
+  #title {
+    height: 6vh;    
+    
+    font-weight: bold;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+.logo-img {
+    width: 300px;
+  }
+  
+  #game-intro {
+    padding: 20px 0px;
+    height: 60vh;    
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+#game-score {
+    width: 40vw;
+    height: 6vh;
+    background: linear-gradient(135deg, rgb(62, 28, 86), rgb(48, 68, 110));
+    border-radius: 40px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-around;
+
+    display:none;
+  }
+
+  #game-end {
+    display: none;
+  }
+  
+  .game-container {
+    margin: 0px auto;
+  }
+
+  #game-container-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-map {
+    position: relative;
+    background-color: #09041bc9;
+  }
+ 
+  #success-msg {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    position: absolute;
+    padding: 5px 5px;
+    background-color: rgba(0,0,0,0.5);
+    color: aliceblue;
+    width: calc(100% - 8px);
+  }
+  
+  body.success #success-msg {
+    opacity: 1;
+    transition: opacity 0.2 ease;
+  }
+  
+  .text {
+    display: none;
+    color: aliceblue;
+  }
+
+  #text-1 {
+    display: none;
+  }
+  
+
+  /*
+   * Layers and tiles are positioned absolutely
+   * within coordinate system of .game-map 
+   */
+   div.layer,
+   div.layer div {
+     position: absolute;
+   }
+   /* border for floors and wall */
+   #tiles div {
+     border: 1px solid rgba(240, 248, 255, 0.565);
+   }
+   
+   /*
+    * Default wall and floor styles
+    */
+   
+   .floor {
+     background-color: transparent;
+   }
+   
+   .wall {
+     background-color: #350ccac9;
+   }
+
+   /*
+   * player and goal are slightly smaller than tiles
+   */
+  .player, 
+  .goal {
+    transform-origin: center;
+    transform:scale(0.85);
+  }
+  /*
+   * Goal colors
+   */
+  .goal {
+    background-color: #FFD700;
+    border: 1px solid #98720b;
+  }
+  /*
+   *  Player default colors
+   */
+  .player {
+    background-color: #90ee90;
+    border: 1px solid #008000;
+    transition: left 0.2s ease, top 0.2s ease;
+  }
+  /*
+   * Player wobbles when colliding with wall or border
+   */
+  .player.collide {  
+    animation: wobble 0.5s;
+    animation-iteration-count: infinite;
+    transition: background-color 0.2s;
+    
+  }
+  
+  /* 
+   * Wobble animation
+   */
+  @keyframes wobble {
+    0% { transform: scale(0.85) translate(1px, 1px); }
+    10% { transform: scale(0.85) translate(-1px, -2px); }
+    20% { transform: scale(0.85) translate(-3px, 0px); }
+    30% { transform: scale(0.85) translate(3px, 2px); }
+    40% { transform: scale(0.85) translate(1px, -1px);}
+    50% { transform: scale(0.85) translate(-1px, 2px); }
+    60% { transform: scale(0.85) translate(-3px, 1px); }
+    70% { transform: scale(0.85) translate(3px, 1px); }
+    80% { transform: scale(0.85) translate(-1px, -1px); }
+    90% { transform: scale(0.85) translate(1px, 2px); }
+    100% { transform: scale(0.85) translate(1px, -2px);; }
+  }
+  
+  

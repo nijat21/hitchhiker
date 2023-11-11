@@ -4,67 +4,74 @@ class Game {
         this.startScreen = document.getElementById('game-intro');
         this.gameScreen = document.getElementById('game-screen');
         this.gameEndScreen = document.getElementById('game-end');
+
         this.el = document.getElementById(id);
 
-        this.height = 600;
-        this.width = 800;
-        // this.obstacles = [];
+        // lives
         this.score = 0;
         this.lives = 3;
         this.isGameOver = false;
 
         this.level_idx = 0;
         this.levels = [...levels];
-        // console.log(this.levels);
 
         // the basic properties common to all this objects.
         this.tileTypes = ['floor', 'wall'];
-        this.numLines = 16; // if we need the number of columns
         this.tileDim = 32;
         // inherit the level's properties: map, player start, goal start.
         this.map = level.map;
-        // level switch
         this.theme = level.theme;
-        // make a copy of the level's player.
         this.player = { ...level.player };
         // create a property for the DOM element, to be set later.
         this.player.element = null;
-        // make a copy of the goal.
         this.goal = { ...level.goal };
     }
 
+    // Setup the game
     start() {
-        // Setting the game screen size
-        this.gameScreen.style.height = `${this.height}px`;
-        this.gameScreen.style.width = `${this.width}px`;
-
         // hide the start screen 
         this.startScreen.style.display = 'none';
 
         // showing
-        this.gameScreen.style.display = 'grid';
-        this.populateMap()
-        this.placeSprite()
+        // this.gameScreen.style.display = 'block';
+
+        // Populating map, sizing up accordingly and placing sprites
+        this.populateMap();
+        this.sizeUp();
+        this.placeSprite();
+
+        // getting the returned value from placeSprite()
+        // Showing the player and the finish point
+        let spritePlayer = this.placeSprite('player');
+        this.player.element = spritePlayer;
+        let spriteGoal = this.placeSprite('goal');
+        this.goal.element = spriteGoal;
+
+        // Show guide text visible
+        let text1 = this.el.querySelector('.text');
+        text1.style.display = 'inline';
+        let text2 = this.el.querySelector('#text-1');
+        text2.style.display = 'inline';
     }
 
     // Create a tile or sprite <div> element
     createEL(x, y, type) {
         // create one tile.
-        let el = document.createElement('div');
+        let el1 = document.createElement('div');
 
         // two class names: one for tile, one or the tile type.
-        el.className = type;
+        el1.className = type;
 
         // set width and height of tile based on the passed-in dimensions.
-        el.style.width = el.style.height = this.tileDim + 'px';
+        el1.style.width = el1.style.height = this.tileDim + 'px';
 
         // set left positions based on x coordinate.
-        el.style.left = x * this.tileDim + 'px';
+        el1.style.left = x * this.tileDim + 'px';
 
         // set top position based on y coordinate.
-        el.style.top = y * this.tileDim + 'px';
+        el1.style.top = y * this.tileDim + 'px';
 
-        return el;
+        return el1;
     }
 
     // Applies the level theme as a class to the game element. 
@@ -93,28 +100,33 @@ class Game {
     // Type has ben used in createEL and become a class name. Cna be either 'player' or 'goal'
     placeSprite(type) {
 
-        // if (type === 'player') {
-        //     x = this.player.x;
-        //     y = this.player.y;
-        // } else if (type === 'goal') {
-        //     x = this.goal.x;
-        //     y = this.goal.y;
-        // }
+        let x = 0;
+        let y = 0;
+
+        if (type === 'player') {
+            x = this.player.x;
+            y = this.player.y;
+        } else if (type === 'goal') {
+            x = this.goal.x;
+            y = this.goal.y;
+        }
 
         // Improved versions of previous code lines
-        let x = this[type].x;
-        let y = this[type].y;
+        // let x = this[type].x;
+        // let y = this[type].y;
 
         // Creating sprites
         let sprite = this.createEL(x, y, type);
         sprite.id = type;
+        sprite.style.borderRadius = this.tileDim + 'px';
 
-        let character = sprite.createElement('img');
-        if (type === 'player') {
-            character.src = '../images/astronaut_baloon.png';
-        }
-        // set the border radius of the sprite.
-        character.src = '../images/door-to-universe.png';
+        // // Adding the character
+        // let character = sprite.createElement('img');
+        // if (type === 'player') {
+        //     character.src = '../images/astronaut_baloon.png';
+        // }
+        // // set the border radius of the sprite.
+        // character.src = '../images/door-to-universe.png';
 
         // Accessing the layer
         let layer = document.querySelector('#sprites');
@@ -229,6 +241,15 @@ class Game {
         }
         body.className = '';
     }
+
+    // Size up the game-map
+    sizeUp() {
+        let map = this.el.querySelector('.game-map');
+
+        map.style.height = this.map.length * this.tileDim + 'px';
+        map.style.width = this.map[0].length * this.tileDim + 'px';
+    }
+
 
 
 }
