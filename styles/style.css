@@ -148,6 +148,11 @@ body button {
      background-color: #350ccac9;
    }
 
+   .question {
+    background-image: url(../images/q_mark.png);
+    background-size: cover;
+   }
+
    /*
    * player and goal are slightly smaller than tiles
    */
@@ -160,16 +165,18 @@ body button {
    * Goal colors
    */
   .goal {
-    background-color: #FFD700;
-    border: 1px solid #98720b;
+    background-image: url(../images/door.png);
+    background-size: cover;
+    background-position: center;
+    /* object-fit: cover; */
   }
   /*
    *  Player default colors
    */
   .player {
-    background-color: #90ee90;
-    border: 1px solid #008000;
     transition: left 0.2s ease, top 0.2s ease;
+    background-image: url(../images/astronaut_on_rocket.png);
+    background-size: cover;
   }
   /*
    * Player wobbles when colliding with wall or border

@@ -25,6 +25,7 @@ class Game {
         // create a property for the DOM element, to be set later.
         this.player.element = null;
         this.goal = { ...level.goal };
+        this.question = { ...level.question };
     }
 
     // Setup the game
@@ -46,6 +47,10 @@ class Game {
         this.player.element = spritePlayer;
         let spriteGoal = this.placeSprite('goal');
         this.goal.element = spriteGoal;
+
+        // Showing questions object
+        let spriteQ = this.placeSprite('question');
+        this.question[q1].element = spriteQ;
 
         // Show guide text visible
         let text1 = this.el.querySelector('.text');
@@ -109,24 +114,15 @@ class Game {
         } else if (type === 'goal') {
             x = this.goal.x;
             y = this.goal.y;
+        } else if (type === 'question') {
+            x = this.question.x;
+            y = this.question.y;
         }
-
-        // Improved versions of previous code lines
-        // let x = this[type].x;
-        // let y = this[type].y;
 
         // Creating sprites
         let sprite = this.createEL(x, y, type);
         sprite.id = type;
-        sprite.style.borderRadius = this.tileDim + 'px';
-
-        // // Adding the character
-        // let character = sprite.createElement('img');
-        // if (type === 'player') {
-        //     character.src = '../images/astronaut_baloon.png';
-        // }
-        // // set the border radius of the sprite.
-        // character.src = '../images/door-to-universe.png';
+        // sprite.style.borderRadius = this.tileDim + 'px';
 
         // Accessing the layer
         let layer = document.querySelector('#sprites');
