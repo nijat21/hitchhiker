@@ -41,6 +41,12 @@ class Game {
         this.sizeUp();
         this.placeSprite();
 
+        // Show guide text visible
+        let text1 = this.el.querySelector('.text');
+        text1.style.display = 'inline';
+        let text2 = this.el.querySelector('#text-1');
+        text2.style.display = 'inline';
+
         // getting the returned value from placeSprite()
         // Showing the player and the finish point
         let spritePlayer = this.placeSprite('player');
@@ -51,12 +57,6 @@ class Game {
         // Showing questions object
         let spriteQ = this.placeSprite('question');
         this.question[q1].element = spriteQ;
-
-        // Show guide text visible
-        let text1 = this.el.querySelector('.text');
-        text1.style.display = 'inline';
-        let text2 = this.el.querySelector('#text-1');
-        text2.style.display = 'inline';
     }
 
     // Create a tile or sprite <div> element
@@ -142,7 +142,7 @@ class Game {
         // 0.2 seconds later reset the player
         window.setTimeout(() => {
             obj.player.element.className = 'player';
-        }, 200);
+        }, 20);
         return 0;
     }
 

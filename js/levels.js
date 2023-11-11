@@ -40,7 +40,7 @@ levels[0] = {
             y: 3,
         },
         qFinal: {
-            qs: 'What is the password, which is the meaning of Life, Universe and Everything?',
+            qs: 'What is the password, which is the meaning of the Life, Universe and Everything?',
             answer: '42',
             x: 10,
             y: 0,
