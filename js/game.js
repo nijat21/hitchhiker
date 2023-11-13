@@ -2,7 +2,7 @@
 class Game {
     constructor(id, level) {
         this.startScreen = document.getElementById('game-intro');
-        this.gameScreen = document.getElementById('game-screen');
+        this.gameScore = document.getElementById('game-score');
         this.gameEndScreen = document.getElementById('game-end');
 
         this.el = document.getElementById(id);
@@ -25,13 +25,19 @@ class Game {
         // create a property for the DOM element, to be set later.
         this.player.element = null;
         this.goal = { ...level.goal };
-        this.question = { ...level.question };
+
+        this.q1 = { ...level.q1 };
+        this.q2 = { ...level.q2 };
+        this.q3 = { ...level.q3 };
     }
 
     // Setup the game
     start() {
         // hide the start screen 
         this.startScreen.style.display = 'none';
+
+        // show the score
+        this.gameScore.style.display = 'block';
 
         // showing
         // this.gameScreen.style.display = 'block';
@@ -54,9 +60,15 @@ class Game {
         let spriteGoal = this.placeSprite('goal');
         this.goal.element = spriteGoal;
 
+
         // Showing questions object
-        let spriteQ = this.placeSprite('question');
-        this.question[q1].element = spriteQ;
+        let spriteQ1 = this.placeSprite('q1');
+        this.q1.element = spriteQ1;
+        let spriteQ2 = this.placeSprite('q2');
+        this.q2.element = spriteQ2;
+        let spriteQ3 = this.placeSprite('q3');
+        this.q3.element = spriteQ3;
+
     }
 
     // Create a tile or sprite <div> element
@@ -114,9 +126,15 @@ class Game {
         } else if (type === 'goal') {
             x = this.goal.x;
             y = this.goal.y;
-        } else if (type === 'question') {
-            x = this.question.x;
-            y = this.question.y;
+        } else if (type === 'q1') {
+            x = this.q1.x;
+            y = this.q1.y;
+        } else if (type === 'q2') {
+            x = this.q2.x;
+            y = this.q2.y;
+        } else if (type === 'q3') {
+            x = this.q3.x;
+            y = this.q3.y;
         }
 
         // Creating sprites
@@ -230,12 +248,23 @@ class Game {
 
     // Checking if the goals is reached
     checkGoal() {
-        let body = document.querySelector('body');
-
         if (this.player.x == this.goal.x && this.player.y == this.goal.y) {
-            body.className = 'success';
+            this.el.style.display = 'none';
+            this.gameEndScreen.style.display = 'block';
+        } else if (this.player.x == this.q1.x && this.player.y == this.q1.y) {
+            popQuestion(this.q1);
+        } else if (this.player.x == this.q2.x && this.player.y == this.q2.y) {
+            popQuestion(this.q2);
+        } else if (this.player.x == this.q3.x && this.player.y == this.q3.y) {
+            // prompt(this.q3.qs);
+            popQuestion(this.q3);
         }
-        body.className = '';
+    }
+
+    // Pop question
+    popQuestion(question) {
+        let qs = question.qs;
+        prompt(qs);
     }
 
     // Size up the game-map
@@ -245,8 +274,6 @@ class Game {
         map.style.height = this.map.length * this.tileDim + 'px';
         map.style.width = this.map[0].length * this.tileDim + 'px';
     }
-
-
 
 }
 

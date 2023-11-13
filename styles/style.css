@@ -6,7 +6,7 @@ body {
     color:aliceblue;
     text-align: center;
     padding: 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 body button {
@@ -41,6 +41,11 @@ body button {
     background-color: #09041bc9;
   }
 
+  #mid-screen {
+    display: none;    
+    background-image: url();
+  }
+
   #title {
     height: 6vh;    
     
@@ -63,15 +68,22 @@ body button {
     align-items: center;
   }
   
-#game-score {
-    width: 40vw;
-    height: 6vh;
-    background: linear-gradient(135deg, rgb(62, 28, 86), rgb(48, 68, 110));
-    border-radius: 40px;
-    text-align: center;
-
+  #container-score {
     display: flex;
     flex-direction: row;
+
+  }
+  
+#game-score {
+    width: auto;
+    height: 6vh;
+    /* background: linear-gradient(135deg, rgb(62, 28, 86), rgb(48, 68, 110)); */
+    border-radius: 40px;
+    text-align: center;
+    margin-left: 50px;
+
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     justify-content: space-around;
@@ -148,7 +160,9 @@ body button {
      background-color: #350ccac9;
    }
 
-   .question {
+   .q1,
+   .q2,
+   .q3 {
     background-image: url(../images/q_mark.png);
     background-size: cover;
    }

@@ -22,23 +22,33 @@
 
     <!-- <div id="game-screen"></div> -->
     <!-- map -->
-    <div id="game-container-1" class="game-container">
-      <p class="text">Go to checkpoint for inter-galactic passport control!</p>
-      <div id="game-map-1" class="game-map">
-        <div id="tiles" class="layer"></div>
-        <div id="sprites" class="layer"></div>
-        <div id="success-msg">Goal reached!</div>
+    <div id="container-score">
+      <div id="game-container-1" class="game-container">
+        <p class="text">Go to checkpoint for inter-galactic passport control!</p>
+        <div id="game-map-1" class="game-map">
+          <div id="tiles" class="layer"></div>
+          <div id="sprites" class="layer"></div>
+          <div id="success-msg">Goal reached!</div>
+        </div>
+        <p id="text-1" class="text">Use cursor keys or buttons to move the marble.</p>
       </div>
-      <p id="text-1" class="text">Use cursor keys or buttons to move the marble.</p>
+
+      <div>
+        <div id="game-score">
+          <h2>Stats</h2>
+          <p>Score: <span id="score">0</span></p>
+          <p>Lives: <span id="lives">3</span></p>
+        </div>
+        <!-- #game-screen is initially hidden using CSS style display: none -->
+      </div>
     </div>
 
-    <div>
-      <div id="game-score">
-        <h2>Stats</h2>
-        <p>Score: <span id="score">0</span></p>
-        <p>Lives: <span id="lives">3</span></p>
-      </div>
-      <!-- #game-screen is initially hidden using CSS style display: none -->
+
+    <!-- Final question - mid screen -->
+    <div id="mid-screen">
+      <img src="./images/wise-rat.png" alt="wise rat">
+      <p id="question"></p>
+      <div class="answers"></div>
     </div>
 
     <!-- #game-end is initially hidden using CSS style display: none -->
