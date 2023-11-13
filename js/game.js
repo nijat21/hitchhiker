@@ -4,8 +4,12 @@ class Game {
         this.startScreen = document.getElementById('game-intro');
         this.gameScore = document.getElementById('game-score');
         this.gameEndScreen = document.getElementById('game-end');
+        this.midScreen = document.getElementById('mid-screen');
 
         this.el = document.getElementById(id);
+
+        // New instance of quiz
+        this.quiz = new Quiz(level);
 
         // lives
         this.score = 0;
@@ -68,7 +72,6 @@ class Game {
         this.q2.element = spriteQ2;
         let spriteQ3 = this.placeSprite('q3');
         this.q3.element = spriteQ3;
-
     }
 
     // Create a tile or sprite <div> element
@@ -252,19 +255,20 @@ class Game {
             this.el.style.display = 'none';
             this.gameEndScreen.style.display = 'block';
         } else if (this.player.x == this.q1.x && this.player.y == this.q1.y) {
-            popQuestion(this.q1);
+            console.log(this.quiz.loadQuestions('q1'));
         } else if (this.player.x == this.q2.x && this.player.y == this.q2.y) {
-            popQuestion(this.q2);
+            console.log(this.quiz.loadQuestions('q2'));
         } else if (this.player.x == this.q3.x && this.player.y == this.q3.y) {
-            // prompt(this.q3.qs);
-            popQuestion(this.q3);
+            // console.log(this.quiz.loadQuestions('q3'));
+            console.log(this.quiz.loadAnswers('q3'));
         }
     }
 
     // Pop question
     popQuestion(question) {
-        let qs = question.qs;
-        prompt(qs);
+        let questionP = this.midScreen.createElement('p');
+        questionP = question.qs
+        console.log(questionP);
     }
 
     // Size up the game-map

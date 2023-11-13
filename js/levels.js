@@ -34,29 +34,25 @@ levels[0] = {
     //     // y: 6,
 
     q1: {
-        qs: 'Who was the Ancient Greek God of the Sun?',
-        answer: ['Hermes', 'Apollo', 'Dionysus', 'Zeus'],
+        'Who was the Ancient Greek God of the Sun?': ['Hermes', 'Apollo', 'Dionysus', 'Zeus', 1],
         x: 12,
         y: 7,
     },
 
     q2: {
-        qs: 'What year was United Nations established?',
-        answer: ['1898', '1918', '1945'],
+        'What year was United Nations established?': ['1898', '1918', '1945', 2],
         x: 7,
         y: 3,
     },
 
     q3: {
-        qs: 'Which planet in the Milky Way is the hottest?',
-        answer: ['Venus', 'Mercury'],
+        'Which planet in the Milky Way is the hottest?': ['Venus', 'Mercury', 0],
         x: 0,
         y: 8,
     },
 
     qFinal: {
-        qs: 'What is the password, which is the meaning of the Life, Universe and Everything?',
-        answer: '42',
+        'What is the password, which is the meaning of the Life, Universe and Everything?': '42',
         x: 10,
         y: 0,
     },
