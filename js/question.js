@@ -109,7 +109,7 @@ class Question {
                         this.wrapper.style.display = 'none';
                         this.qPane.style.display = 'none';
                     }, 100);
-                    // final question show the end-screen when sumbmited
+                    // final question show the end-screen when submited
                     this.gameContainerSore.style.display = 'none';
                     endWords.innerHTML = "You failed!";
                     this.gameEndScreen.style.display = 'block';
@@ -125,7 +125,7 @@ class Question {
                     this.wrapper.style.display = 'none';
                     this.qPane.style.display = 'none';
                 }, 100);
-                // final question show the end-screen when sumbmited
+                // final question show the end-screen when submited
                 this.gameContainerSore.style.display = 'none';
                 endWords.innerHTML = "You failed!";
                 this.gameEndScreen.style.display = 'block';

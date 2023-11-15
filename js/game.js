@@ -266,10 +266,10 @@ class Game {
             if (this.qFinalShown == false) {
                 let check = this.qsInstance.checkAnswer(this.qFinal);
                 // show end-screen if the player reaches to goal even if he does have a life and some score
-                // this.gameContainerSore.style.display = 'none';
-                // let endWords = document.getElementById('game-finished');
-                // endWords.innerHTML = "Passed! Please follow the inter-galactic travel guidelines!Good luck!";
-                // this.gameEndScreen.style.display = 'block';
+                this.gameContainerSore.style.display = 'none';
+                let endWords = document.getElementById('game-finished');
+                endWords.innerHTML = "Passed! Please follow the inter-galactic travel guidelines!Good luck!";
+                this.gameEndScreen.style.display = 'block';
 
                 this.qFinalShown = true;
                 // this.music.stopMusic();
