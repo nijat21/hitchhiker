@@ -29,34 +29,28 @@ levels[0] = {
         y: 0
     },
 
-    // question: {
-    //     // x: 12,
-    //     // y: 6,
-
-    q1: {
-        'Who was the Ancient Greek God of the Sun?': ['Hermes', 'Apollo', 'Dionysus', 'Zeus', 1],
-        x: 12,
-        y: 7,
-    },
-
-    q2: {
-        'What year was United Nations established?': ['1898', '1918', '1945', 2],
-        x: 7,
-        y: 3,
-    },
-
-    q3: {
-        'Which planet in the Milky Way is the hottest?': ['Venus', 'Mercury', 0],
-        x: 0,
-        y: 8,
-    },
-
-    qFinal: {
-        'What is the password, which is the meaning of the Life, Universe and Everything?': '42',
-        x: 10,
-        y: 0,
-    },
-    // },
+    questions: [
+        {
+            'Who was the Ancient Greek God of the Sun?': ['Hermes', 'Apollo', 'Dionysus', 'Zeus', 1],
+            x: 12,
+            y: 7,
+        },
+        {
+            'What year was United Nations established?': ['1898', '1918', '1945', 2],
+            x: 7,
+            y: 3,
+        },
+        {
+            'Which planet in the Milky Way is the hottest?': ['Venus', 'Mercury', 0],
+            x: 0,
+            y: 8,
+        },
+        {
+            'What is the password, which is the meaning of the Life, Universe and Everything?': ['42'],
+            x: 10,
+            y: 0,
+        }
+    ],
 
     theme: 'default',
 };

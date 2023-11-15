@@ -33,26 +33,25 @@
         <p id="text-1" class="text">Use cursor keys or buttons to move the marble.</p>
       </div>
 
-      <div>
-        <div id="game-score">
-          <h2>Stats</h2>
-          <p>Score: <span id="score">0</span></p>
-          <p>Lives: <span id="lives">3</span></p>
-        </div>
-        <!-- #game-screen is initially hidden using CSS style display: none -->
+      <div id="game-score">
+        <p>Lives: <span id="lives">3</span></p>
       </div>
+
     </div>
 
     <!--  -->
-    <div class="wrapper">
-      <div id="quiz">
-        <p class="questions"></p>
-        <div class="answers"></div>
-        <div class="checkAnswers">
-          <div class="checker"></div>
+    <div id="wrapper">
+      <div id="wrapper1">
+        <div id="q-pane">
+          <!-- <div class="question-container">
+            <p class="question"></p>
+            <div class="options-container"></div>
+          </div> -->
         </div>
+        <img src="./images/rat1.png" alt="wise-rat">
       </div>
     </div>
+
 
     <!-- Final question - mid screen -->
     <div id="mid-screen">
@@ -72,7 +71,7 @@
 
   <!-- LINK THE JAVASCRIPT FILES HERE (keep in mind that the order in which you link them MATTERS) -->
   <script type="text/javascript" src="js/levels.js"></script>
-  <script type="text/javascript" src="js/quiz.js"></script>
+  <script type="text/javascript" src="js/question.js"></script>
   <script type="text/javascript" src="js/game.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
 </body>

@@ -3,17 +3,18 @@ class Game {
     constructor(id, level) {
         this.startScreen = document.getElementById('game-intro');
         this.gameScore = document.getElementById('game-score');
+        this.qPane = document.getElementById('q-pane');
         this.gameEndScreen = document.getElementById('game-end');
         this.midScreen = document.getElementById('mid-screen');
+        this.boDy = document.querySelector('body');
 
         this.el = document.getElementById(id);
 
         // New instance of quiz
-        this.quiz = new Quiz(level);
+        this.qsInstance = new Question(level);
 
         // lives
-        this.score = 0;
-        this.lives = 3;
+        this.lives = this.qsInstance.lives;
         this.isGameOver = false;
 
         this.level_idx = 0;
@@ -30,9 +31,16 @@ class Game {
         this.player.element = null;
         this.goal = { ...level.goal };
 
-        this.q1 = { ...level.q1 };
-        this.q2 = { ...level.q2 };
-        this.q3 = { ...level.q3 };
+        this.q1 = { ...level.questions[0] };
+        this.q2 = { ...level.questions[1] };
+        this.q3 = { ...level.questions[2] };
+        this.qFinal = { ...level.questions[3] };
+
+        // to limit the chance to answer to 1
+        this.q1Shown = false;
+        this.q2Shown = false;
+        this.q3Shown = false;
+        this.qFinalShown = false;
     }
 
     // Setup the game
@@ -108,7 +116,6 @@ class Game {
                 // tileTypes will return floor if tileCode 0, and wall if tileCode is 1
                 let tileCode = this.map[y][x];
                 let tileType = this.tileTypes[tileCode];
-
                 // Creating cells for all map elements and adding it into tiles
                 let tile = this.createEL(x, y, tileType);
                 tiles.append(tile);
@@ -255,20 +262,21 @@ class Game {
             this.el.style.display = 'none';
             this.gameEndScreen.style.display = 'block';
         } else if (this.player.x == this.q1.x && this.player.y == this.q1.y) {
-            console.log(this.quiz.loadQuestions('q1'));
+            let check = this.qsInstance.checkAnswer(this.q1);
+            this.q1Shown = true;
         } else if (this.player.x == this.q2.x && this.player.y == this.q2.y) {
-            console.log(this.quiz.loadQuestions('q2'));
+            let check = this.qsInstance.checkAnswer(this.q2);
+            this.q2Shown = true;
         } else if (this.player.x == this.q3.x && this.player.y == this.q3.y) {
-            // console.log(this.quiz.loadQuestions('q3'));
-            console.log(this.quiz.loadAnswers('q3'));
+            // this.el.className = 'blur'
+            let check = this.qsInstance.checkAnswer(this.q3);
+            this.q3Shown = true;
         }
-    }
 
-    // Pop question
-    popQuestion(question) {
-        let questionP = this.midScreen.createElement('p');
-        questionP = question.qs
-        console.log(questionP);
+        // Check if the Game is Over
+        if (this.lives === 0) {
+            this.isGameOver = true;
+        }
     }
 
     // Size up the game-map
@@ -277,6 +285,12 @@ class Game {
 
         map.style.height = this.map.length * this.tileDim + 'px';
         map.style.width = this.map[0].length * this.tileDim + 'px';
+    }
+
+    // Updating the lives in the screen
+    updateLives() {
+        const lives = document.getElementById('lives');
+        lives.innerText = this.lives;
     }
 
 }
