@@ -38,7 +38,7 @@ levels[0] = {
         {
             'What year was United Nations established?': ['1898', '1918', '1945', 2],
             x: 7,
-            y: 3,
+            y: 5,
         },
         {
             'Which planet in the Milky Way is the hottest?': ['Venus', 'Mercury', 0],

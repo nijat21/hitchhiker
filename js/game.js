@@ -4,8 +4,11 @@ class Game {
         this.startScreen = document.getElementById('game-intro');
         this.gameScore = document.getElementById('game-score');
         this.qPane = document.getElementById('q-pane');
+        this.gameContainerSore = document.querySelector('#container-score');
+        this.music = new Music();
+
         this.gameEndScreen = document.getElementById('game-end');
-        this.midScreen = document.getElementById('mid-screen');
+        // this.midScreen = document.getElementById('mid-screen');
         this.boDy = document.querySelector('body');
 
         this.el = document.getElementById(id);
@@ -14,8 +17,7 @@ class Game {
         this.qsInstance = new Question(level);
 
         // lives
-        // this.lives = this.qsInstance.lives;
-        this.isGameOver = false;
+        this.lives = this.qsInstance.lives;
 
         this.level_idx = 0;
         this.levels = [...levels];
@@ -58,6 +60,8 @@ class Game {
         this.populateMap();
         this.sizeUp();
         this.placeSprite();
+
+        // this.music.playMusicStart();
 
         // Show guide text visible
         let text1 = this.el.querySelector('.text');
@@ -261,29 +265,34 @@ class Game {
         if (this.player.x == this.goal.x && this.player.y == this.goal.y) {
             if (this.qFinalShown == false) {
                 let check = this.qsInstance.checkAnswer(this.qFinal);
+                // show end-screen if the player reaches to goal even if he does have a life and some score
+                // this.gameContainerSore.style.display = 'none';
+                // let endWords = document.getElementById('game-finished');
+                // endWords.innerHTML = "Passed! Please follow the inter-galactic travel guidelines!Good luck!";
+                // this.gameEndScreen.style.display = 'block';
+
                 this.qFinalShown = true;
+                // this.music.stopMusic();
+                // this.music.playMusicEnd();
             }
         } else if (this.player.x == this.q1.x && this.player.y == this.q1.y) {
             if (this.q1Shown == false) {
                 let check = this.qsInstance.checkAnswer(this.q1);
                 this.q1Shown = true;
+                // this.music.playAlert();
             }
         } else if (this.player.x == this.q2.x && this.player.y == this.q2.y) {
             if (this.q2Shown == false) {
                 let check = this.qsInstance.checkAnswer(this.q2);
                 this.q2Shown = true;
+                // this.music.playAlert();
             }
         } else if (this.player.x == this.q3.x && this.player.y == this.q3.y) {
             if (this.q3Shown == false) {
                 let check = this.qsInstance.checkAnswer(this.q3);
                 this.q3Shown = true;
-                // this.updateLives();
+                // this.music.playAlert();
             }
-        }
-
-        // Check if the Game is Over
-        if (this.lives === 0) {
-            this.isGameOver = true;
         }
     }
 
@@ -294,8 +303,6 @@ class Game {
         map.style.height = this.map.length * this.tileDim + 'px';
         map.style.width = this.map[0].length * this.tileDim + 'px';
     }
-
-
 
 }
 

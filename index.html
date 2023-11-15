@@ -24,7 +24,8 @@
     <!-- map -->
     <div id="container-score">
       <div id="game-container-1" class="game-container">
-        <p class="text">Go to checkpoint for inter-galactic passport control!</p>
+        <p class="text">Go to checkpoint for inter-galactic passport control! Respond to all questions right to finish!
+        </p>
         <div id="game-map-1" class="game-map">
           <div id="tiles" class="layer"></div>
           <div id="sprites" class="layer"></div>
@@ -34,6 +35,7 @@
       </div>
 
       <div id="game-score">
+        <p>Score: <span id="score">0</span></p>
         <p>Lives: <span id="lives">3</span></p>
       </div>
 
@@ -63,7 +65,7 @@
     <!-- #game-end is initially hidden using CSS style display: none -->
     <div id="game-end">
       <img src="./images/logo.png" alt="" class="logo-img" />
-      <h1>Game Over</h1>
+      <h1 id="game-finished"></h1>
       <br />
       <button id="restart-button">Restart</button>
     </div>
@@ -71,6 +73,7 @@
 
   <!-- LINK THE JAVASCRIPT FILES HERE (keep in mind that the order in which you link them MATTERS) -->
   <script type="text/javascript" src="js/levels.js"></script>
+  <script src="./js/music/music.js"></script>
   <script type="text/javascript" src="js/question.js"></script>
   <script type="text/javascript" src="js/game.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>

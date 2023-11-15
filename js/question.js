@@ -5,7 +5,9 @@ class Question {
         this.wrapper = document.querySelector('#wrapper');
         this.qPane = document.querySelector('#q-pane');
         this.lives = 3;
+        this.score = 0;
         this.gameContainerSore = document.querySelector('#container-score');
+        this.gameEndScreen = document.querySelector('#game-end');
     }
 
     popQuestion(question) {
@@ -42,7 +44,7 @@ class Question {
             let input = document.createElement('input');
             input.className = 'open-response';
             input.placeholder = 'Answer';
-            input.type = 'text';
+            // input.type = 'text';
             openContainer.appendChild(input);
             let submit = document.createElement('button');
             submit.className = 'submit';
@@ -68,9 +70,12 @@ class Question {
 
         if (!openResponse) {
             currentOptions.forEach((option, index) => {
-                option.addEventListener('click', () => {
+                option.addEventListener('click', (event) => {
+                    event.preventDefault();
                     if (index === choices[choices.length - 1]) {
                         console.log('true');
+                        this.score += 25;
+                        this.updateStats();
                         let timeoutQ = setTimeout(() => {
                             this.wrapper.style.display = 'none';
                             this.qPane.style.display = 'none';
@@ -81,7 +86,7 @@ class Question {
                     }
                     console.log('false');
                     this.lives--;
-                    this.updateLives();
+                    this.updateStats();
                     let timeoutQ = setTimeout(() => {
                         this.wrapper.style.display = 'none';
                         this.qPane.style.display = 'none';
@@ -92,32 +97,44 @@ class Question {
                 });
             });
         } else {
-            submitBtn.addEventListener('click', () => {
+            submitBtn.addEventListener('click', (input) => {
+                input.preventDefault();
                 let userAnswer = openResponse.value;
                 let correctAnswer = choices[choices.length - 1];
                 if (userAnswer == correctAnswer) {
                     console.log('true');
+                    this.score += 25;
+                    this.updateStats();
                     let timeoutQ = setTimeout(() => {
                         this.wrapper.style.display = 'none';
                         this.qPane.style.display = 'none';
                     }, 100);
+                    // final question show the end-screen when sumbmited
+                    this.gameContainerSore.style.display = 'none';
+                    endWords.innerHTML = "You failed!";
+                    this.gameEndScreen.style.display = 'block';
+
                     this.gameContainerSore.classList.remove('blur');
                     this.removeQuestion(cont);
                     return true;
                 }
                 console.log('false');
                 this.lives--;
-                this.updateLives();
+                this.updateStats();
                 let timeoutQ = setTimeout(() => {
                     this.wrapper.style.display = 'none';
                     this.qPane.style.display = 'none';
                 }, 100);
+                // final question show the end-screen when sumbmited
+                this.gameContainerSore.style.display = 'none';
+                endWords.innerHTML = "You failed!";
+                this.gameEndScreen.style.display = 'block';
+
                 this.gameContainerSore.classList.remove('blur');
                 this.removeQuestion(cont);
                 return false;
             })
         }
-
     }
 
     removeQuestion(questionContainer) {
@@ -125,42 +142,24 @@ class Question {
     }
 
     // Updating the lives in the screen
-    updateLives() {
+    updateStats() {
         let lives = document.getElementById('lives');
         lives.innerText = this.lives;
+        let score = document.getElementById('score');
+        score.innerHTML = this.score;
+        let endWords = document.getElementById('game-finished');
+
+        // Check if the Game is Over
+        if (this.lives === 0) {
+            this.gameContainerSore.style.display = 'none';
+            endWords.innerHTML = 'You Failed!';
+            this.gameEndScreen.style.display = 'block';
+        } else {
+            if (this.score === 100) {
+                this.gameContainerSore.style.display = 'none';
+                endWords.innerHTML = "Passed! Please follow the inter-galactic travel guidelines!Good luck!";
+                this.gameEndScreen.style.display = 'block';
+            }
+        }
     }
-
-    // checkAnswer(question) {
-    //     // Getting the container that has question and answer
-    //     let cont = this.popQuestion(question);
-    //     let currentOptions = cont.querySelectorAll('.option');
-    //     let openResponse = cont.querySelector('.open-response');
-    //     let submitBtn = cont.querySelector('.submit');
-    //     // Adding the choices to check for the right answer
-    //     let choices = question[Object.keys(question)[0]];
-    //     if (!openResponse) {
-    //         currentOptions.forEach((option, index) => {
-    //             option.addEventListener('click', () => {
-    //                 if (index === choices[choices.length - 1]) {
-    //                     console.log('true');
-    //                     return true;
-    //                 }
-    //                 console.log('false');
-    //                 return false;
-    //             });
-    //         });
-    //     } else {
-    //         submitBtn.addEventListener('click', () => {
-    //             let userAnswer = openResponse.value;
-    //             let correctAnswer = choices[choices.length - 1];
-    //             if (userAnswer == correctAnswer) {
-    //                 console.log('true');
-    //                 return true;
-    //             }
-    //             console.log('false');
-    //             return false;
-    //         })
-    //     }
-    // }
-
 }
