@@ -46,9 +46,9 @@ levels[0] = {
             y: 8,
         },
         {
-            'What is the password, which is the meaning of the Life, Universe and Everything?': ['42'],
-            x: 10,
-            y: 0,
+            'What is the ultimate meaning of the Life, Universe and Everything?': ['42'],
+            // x: 10,
+            // y: 0,
         }
     ],
 

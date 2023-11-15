@@ -14,7 +14,7 @@ class Game {
         this.qsInstance = new Question(level);
 
         // lives
-        this.lives = this.qsInstance.lives;
+        // this.lives = this.qsInstance.lives;
         this.isGameOver = false;
 
         this.level_idx = 0;
@@ -259,18 +259,26 @@ class Game {
     // Checking if the goals is reached
     checkGoal() {
         if (this.player.x == this.goal.x && this.player.y == this.goal.y) {
-            this.el.style.display = 'none';
-            this.gameEndScreen.style.display = 'block';
+            if (this.qFinalShown == false) {
+                let check = this.qsInstance.checkAnswer(this.qFinal);
+                this.qFinalShown = true;
+            }
         } else if (this.player.x == this.q1.x && this.player.y == this.q1.y) {
-            let check = this.qsInstance.checkAnswer(this.q1);
-            this.q1Shown = true;
+            if (this.q1Shown == false) {
+                let check = this.qsInstance.checkAnswer(this.q1);
+                this.q1Shown = true;
+            }
         } else if (this.player.x == this.q2.x && this.player.y == this.q2.y) {
-            let check = this.qsInstance.checkAnswer(this.q2);
-            this.q2Shown = true;
+            if (this.q2Shown == false) {
+                let check = this.qsInstance.checkAnswer(this.q2);
+                this.q2Shown = true;
+            }
         } else if (this.player.x == this.q3.x && this.player.y == this.q3.y) {
-            // this.el.className = 'blur'
-            let check = this.qsInstance.checkAnswer(this.q3);
-            this.q3Shown = true;
+            if (this.q3Shown == false) {
+                let check = this.qsInstance.checkAnswer(this.q3);
+                this.q3Shown = true;
+                // this.updateLives();
+            }
         }
 
         // Check if the Game is Over
@@ -287,11 +295,7 @@ class Game {
         map.style.width = this.map[0].length * this.tileDim + 'px';
     }
 
-    // Updating the lives in the screen
-    updateLives() {
-        const lives = document.getElementById('lives');
-        lives.innerText = this.lives;
-    }
+
 
 }
 

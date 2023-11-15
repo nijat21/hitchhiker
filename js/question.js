@@ -81,6 +81,7 @@ class Question {
                     }
                     console.log('false');
                     this.lives--;
+                    this.updateLives();
                     let timeoutQ = setTimeout(() => {
                         this.wrapper.style.display = 'none';
                         this.qPane.style.display = 'none';
@@ -106,6 +107,7 @@ class Question {
                 }
                 console.log('false');
                 this.lives--;
+                this.updateLives();
                 let timeoutQ = setTimeout(() => {
                     this.wrapper.style.display = 'none';
                     this.qPane.style.display = 'none';
@@ -120,6 +122,12 @@ class Question {
 
     removeQuestion(questionContainer) {
         questionContainer.remove();
+    }
+
+    // Updating the lives in the screen
+    updateLives() {
+        let lives = document.getElementById('lives');
+        lives.innerText = this.lives;
     }
 
     // checkAnswer(question) {

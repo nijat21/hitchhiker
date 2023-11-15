@@ -262,7 +262,7 @@ body button {
 
 .question {
   font-weight: bold;
-  height: 7vh;
+  /* height: 7vh; */
   text-align: center;
 }
 
@@ -271,6 +271,25 @@ body button {
   font-weight: bold;
   font-size: large;
   width: 15vw;
+  height: 6vh;
+}
+
+.open-response {
+  border-radius: 15px;
+  width: 55%;
+  height: 3vw;
+  background-color: #050210c9;
+  color: aliceblue;
+  font-size: large;
+  margin-right: 7px;
+  padding-left: 5px;
+} 
+
+.submit {
+  /* width: auto; */
+  font-weight: bold;
+  font-size: large;
+  width: auto;
   height: 6vh;
 }
 
