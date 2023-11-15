@@ -262,8 +262,10 @@ body button {
 
 .question {
   font-weight: bold;
-  /* height: 7vh; */
-  text-align: center;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .option {
