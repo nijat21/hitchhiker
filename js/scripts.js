@@ -16,22 +16,25 @@ window.onload = function () {
 
     // Adding movement
     window.addEventListener('keydown', event => {
-        event.preventDefault();
 
         switch (event.key) {
             case 'ArrowUp':
+                event.preventDefault();
                 game.moveUp();
                 game.checkGoal();
                 break;
             case 'ArrowDown':
+                event.preventDefault();
                 game.moveDown();
                 game.checkGoal();
                 break;
             case 'ArrowLeft':
+                event.preventDefault();
                 game.moveLeft();
                 game.checkGoal();
                 break;
             case 'ArrowRight':
+                event.preventDefault();
                 game.moveRight();
                 game.checkGoal();
                 break;

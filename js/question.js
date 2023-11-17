@@ -161,5 +161,6 @@ class Question {
                 this.gameEndScreen.style.display = 'block';
             }
         }
+
     }
 }
