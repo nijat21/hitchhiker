@@ -6,24 +6,19 @@ class Game {
         this.qPane = document.getElementById('q-pane');
         this.gameContainerSore = document.querySelector('#container-score');
         this.music = new Music();
-
         this.gameEndScreen = document.getElementById('game-end');
-        // this.midScreen = document.getElementById('mid-screen');
         this.boDy = document.querySelector('body');
-
         this.el = document.getElementById(id);
 
         // New instance of quiz
         this.qsInstance = new Question(level);
-
-        // lives
         this.lives = this.qsInstance.lives;
-
-        this.level_idx = 0;
+        this.score = 0;
         this.levels = [...levels];
+        this.level_idx = 0;
 
         // the basic properties common to all this objects.
-        this.tileTypes = ['floor', 'wall'];
+        this.tileTypes = ['floor', 'wall', 'gas', 'tesseract'];
         this.tileDim = 32;
         // inherit the level's properties: map, player start, goal start.
         this.map = level.map;
@@ -168,9 +163,6 @@ class Game {
         this.player.element.className += 'collide';
         let obj = this;
 
-        // every time the player collides, lives decrease by one
-        // this.lives--;
-
         // 0.2 seconds later reset the player
         window.setTimeout(() => {
             obj.player.element.className = 'player';
@@ -190,6 +182,9 @@ class Game {
         if (nextTile == 1) {
             this.collide();
             return;
+        }
+        else if (nextTile == 2) {
+
         }
         this.player.x -= 1;
 
@@ -267,9 +262,6 @@ class Game {
                 let check = this.qsInstance.checkAnswer(this.qFinal);
                 // show end-screen if the player reaches to goal even if he does have a life and some score
                 this.gameContainerSore.style.display = 'none';
-                let endWords = document.getElementById('game-finished');
-                endWords.innerHTML = "You failed!";
-                this.gameEndScreen.style.display = 'block';
 
                 this.qFinalShown = true;
                 // this.music.stopMusic();
@@ -302,6 +294,28 @@ class Game {
 
         map.style.height = this.map.length * this.tileDim + 'px';
         map.style.width = this.map[0].length * this.tileDim + 'px';
+    }
+
+    // Changing the player to running version
+    runningChar() {
+        // let myPlayer = document.querySelector('.player');
+        this.player.element.style.backgroundImage = 'url("../images/running-astronaut.gif")';
+    }
+
+    // Standing character
+    standingChar() {
+        // let myPlayer = document.querySelector('.player');
+        this.player.element.style.backgroundImage = 'url("../images/astronaut-standing.gif")';
+    }
+
+    // Change the players sides
+    turnLeft() {
+        this.player.element.style.transform = 'scaleX(-1)';
+    }
+
+    // Change the players sides
+    turnRight() {
+        this.player.element.style.transform = 'scaleX(1)';
     }
 
 }
