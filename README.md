@@ -4,7 +4,7 @@ Advanced is the additional improvements in the original game Hitchiker which was
 
 # YOUR PROJECT TITLE
 
-#### Video Demo: <URL HERE>
+#### Video Demo: <https://www.loom.com/share/bd97c84f945145668d6be8514243e215?sid=51b18846-8382-4e66-91c2-ead0cbe69883>
 
 #### Description:
 
